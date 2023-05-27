@@ -1,25 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
-public class ScoreObserver : MonoBehaviour
+
+public abstract class ScoreObserver
 {
-    private ScoreUI scoreUI;
-    private void Start()
-    {
-        scoreUI = GetComponent<ScoreUI>();
-        ScoreManager.Instance.AddScoreObserver(OnScoreChanged);
-    }    
-    private void OnDestroy()
-    {
-        if (ScoreManager.Instance != null)
-        {
-            ScoreManager.Instance.RemoveScoreObserver(OnScoreChanged);
-        }
-    }
-
-    private void OnScoreChanged(int score)
-    {
-        scoreUI.UpdateScore(score);
-    }
+    public abstract void OnScoreChanged(int newScore);
 }
